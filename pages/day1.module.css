@@ -21,10 +21,14 @@
 
 .column {
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  max-height: 100vh;
 }
 
 .row {
-  display: block;
+  display: flex;
 }
 
 .box {
@@ -35,6 +39,7 @@
   font-size: 1.125rem;
   width: 150px;
   height: 150px;
-  text-align: center;
   line-height: 130px;
+  flex-basis: 120px;
+  text-align: center;
 }
