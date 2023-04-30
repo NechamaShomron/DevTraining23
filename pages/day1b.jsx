@@ -8,6 +8,10 @@ export default function Day1b() {
   function toggleMobileView() {
     setShowMobile(!showMobile);
   }
+  function closeMobileView(e) {
+    setShowMobile(false);
+    e.stopPropagation();
+  }
   return (
     <>
       <nav className={styles.navbar}>
@@ -33,7 +37,7 @@ export default function Day1b() {
           <span className={showMobile ? `${styles.hamburger_bar} ${styles.active}` : styles.hamburger_bar} />
         </div>
       </nav>
-      <div className={styles.hero_section_container}>
+      <div className={styles.hero_section_container} role="presentation" onClick={(e) => closeMobileView(e)}>
         <div>
           <h1 className={styles.hero_section_title}>Learn about the renaissance! </h1>
           <p className={styles.hero_section_text} role="presentation">The Renaissance is a period in European history marking the transition from the Middle Ages to modernity and covering the 15th and 16th centuries, characterized by an effort to revive and surpass ideas and achievements of classical antiquity.</p>
