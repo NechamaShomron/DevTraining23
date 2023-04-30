@@ -9,7 +9,7 @@ export default function Day1() {
       </header>
       <main className={styles.main}>
         <section className={styles.section}>
-          <h2>Section 1</h2>
+          <h2 className={styles.section_title}>Section 1</h2>
           <div className={styles.column}>
             <div className={styles.box}>Box 1</div>
             <div className={styles.box}>Box 2</div>
@@ -18,7 +18,7 @@ export default function Day1() {
           </div>
         </section>
         <section className={styles.section}>
-          <h2>Section 2</h2>
+          <h2 className={styles.section_title}>Section 2</h2>
           <div className={styles.row}>
             <div className={styles.box}>Box 5</div>
             <div className={styles.box}>Box 6</div>

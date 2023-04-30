@@ -37,9 +37,19 @@
   padding: 10px;
   margin: 10px;
   font-size: 1.125rem;
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   line-height: 130px;
   flex-basis: 120px;
   text-align: center;
 }
+
+@media (max-width: 576px) { 
+.section_title{
+  font-size: 2rem;
+  margin-top: 0rem;
+}
+.box{
+  background-color: mediumpurple;
+}
+ }
