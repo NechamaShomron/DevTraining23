@@ -44,6 +44,11 @@
   text-align: center;
 }
 
+.box:hover{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: #e65035;
+}
+
 @media (max-width: 576px) { 
 .section_title{
   font-size: 2rem;
@@ -51,5 +56,8 @@
 }
 .box{
   background-color: mediumpurple;
+}
+.box:hover{
+  background-color: #7a4bd9;
 }
  }
