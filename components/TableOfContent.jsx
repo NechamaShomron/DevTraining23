@@ -13,6 +13,10 @@ function TableOfContent({ days }) {
             <Link href={`/day${index + 1}`}>
               {day}
             </Link>
+            <br />
+            <Link href="day1b">
+              bonus day1 challenge
+            </Link>
           </li>
         ))}
       </ul>
