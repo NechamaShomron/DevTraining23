@@ -27,6 +27,11 @@ function TaskList() {
       alert('Task name is empty');
     }
   };
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      addTask();
+    }
+  };
 
   const removeTask = (taskIdToDelete) => {
     setTasks((previousTasksData) => previousTasksData.filter((task) => task.id !== taskIdToDelete));
@@ -71,7 +76,7 @@ function TaskList() {
           </div>
         ))}
       </ul>
-      <input placeholder="New Task Description" className={styles.add_task_input} value={taskToAdd} onChange={onTaskChange} />
+      <input placeholder="New Task Description" className={styles.add_task_input} value={taskToAdd} onChange={onTaskChange} onKeyDown={handleKeyDown} />
       <button type="button" className={styles.addButton} onClick={addTask}>Add Task</button>
     </div>
   );
