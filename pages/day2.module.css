@@ -15,18 +15,32 @@
 }
 
 .listItem {
-  font-size: 1.5rem;
+  display: flex;
+  font-size: 1.3rem;
   margin-bottom: 0.5rem;
 }
-
+.remove_task_button{
+  padding-left: 0.6rem;
+}
+.remove_task_button:hover{
+  color:rgb(159, 29, 29);
+  cursor: pointer;
+}
 .addButton {
+  margin-left: 1rem;
   font-size: 1rem;
   padding: 0.5rem 1rem;
   background-color: #0070f3;
   color: #ffffff;
   border: none;
+  height: 2.4rem;
+  margin-top: -1rem;
   border-radius: 5px;
   cursor: pointer;
+}
+.add_task_input{
+  width: 13rem;
+  height: 1.8rem;
 }
 
 .button {

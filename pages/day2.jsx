@@ -7,6 +7,7 @@ function TaskList() {
     { id: 1, title: 'Learn React' },
     { id: 2, title: 'Learn Next.js' },
   ]);
+  const [taskToAdd, setTaskToAdd] = useState('');
   const [showPopup, setShowPopup] = useState(false);
 
   const openPopup = () => {
@@ -18,7 +19,21 @@ function TaskList() {
   };
 
   const addTask = () => {
-    setTasks([...tasks, { id: tasks.length + 1, title: `Task ${tasks.length + 1}` }]);
+    if (taskToAdd !== '') {
+      setTasks([...tasks, { id: tasks.length + 1, title: taskToAdd }]);
+      setTaskToAdd('');
+    } else {
+      // eslint-disable-next-line no-alert
+      alert('Task name is empty');
+    }
+  };
+
+  const removeTask = (taskIdToDelete) => {
+    setTasks((previousTasksData) => previousTasksData.filter((task) => task.id !== taskIdToDelete));
+  };
+
+  const onTaskChange = (e) => {
+    setTaskToAdd(e.target.value);
   };
 
   const instructionsText = `
@@ -48,9 +63,15 @@ function TaskList() {
       )}
       <ul className={styles.list}>
         {tasks.map((task) => (
-          <li key={task.id} className={styles.listItem}>{task.title}</li>
+          <div className={styles.listItem}>
+            <li key={task.id}>{task.title}</li>
+            <span className={styles.remove_task_button} onClick={() => removeTask(task.id)} role="presentation">
+              <i className="fa fa-trash" aria-hidden="true" />
+            </span>
+          </div>
         ))}
       </ul>
+      <input placeholder="New Task Description" className={styles.add_task_input} value={taskToAdd} onChange={onTaskChange} />
       <button type="button" className={styles.addButton} onClick={addTask}>Add Task</button>
     </div>
   );
