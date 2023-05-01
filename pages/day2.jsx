@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import Popup from '../components/Popup';
+import useTasks from '../components/useTasks';
 import styles from './day2.module.css';
 
 function TaskList() {
-  const [tasks, setTasks] = useState([
-    { id: 1, title: 'Learn React' },
-    { id: 2, title: 'Learn Next.js' },
-  ]);
-  const [taskToAdd, setTaskToAdd] = useState('');
+  const {
+    tasks, taskToAdd, onTaskAdd, onTaskRemove, onTaskChange, handleKeyDown,
+  } = useTasks();
   const [showPopup, setShowPopup] = useState(false);
 
   const openPopup = () => {
@@ -16,29 +15,6 @@ function TaskList() {
 
   const closePopup = () => {
     setShowPopup(false);
-  };
-
-  const addTask = () => {
-    if (taskToAdd !== '') {
-      setTasks([...tasks, { id: tasks.length + 1, title: taskToAdd }]);
-      setTaskToAdd('');
-    } else {
-      // eslint-disable-next-line no-alert
-      alert('Task name is empty');
-    }
-  };
-  const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
-      addTask();
-    }
-  };
-
-  const removeTask = (taskIdToDelete) => {
-    setTasks((previousTasksData) => previousTasksData.filter((task) => task.id !== taskIdToDelete));
-  };
-
-  const onTaskChange = (e) => {
-    setTaskToAdd(e.target.value);
   };
 
   const instructionsText = `
@@ -70,14 +46,14 @@ function TaskList() {
         {tasks.map((task) => (
           <div className={styles.listItem}>
             <li key={task.id}>{task.title}</li>
-            <span className={styles.remove_task_button} onClick={() => removeTask(task.id)} role="presentation">
+            <span className={styles.remove_task_button} onClick={() => onTaskRemove(task.id)} role="presentation">
               <i className="fa fa-trash" aria-hidden="true" />
             </span>
           </div>
         ))}
       </ul>
       <input placeholder="New Task Description" className={styles.add_task_input} value={taskToAdd} onChange={onTaskChange} onKeyDown={handleKeyDown} />
-      <button type="button" className={styles.addButton} onClick={addTask}>Add Task</button>
+      <button type="button" className={styles.addButton} onClick={onTaskAdd}>Add Task</button>
     </div>
   );
 }
