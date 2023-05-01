@@ -19,6 +19,13 @@
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
 }
+.toggle_complete{
+  width: 1rem;
+  margin-right: 1rem;
+}
+.listItem input:checked~.task_title {
+  text-decoration: line-through;
+  }
 .remove_task_button{
   padding-left: 0.6rem;
 }

@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Popup from '../components/Popup';
 import useTasks from '../components/useTasks';
 import styles from './day2.module.css';
 
 function TaskList() {
   const {
-    tasks, taskToAdd, onTaskAdd, onTaskRemove, onTaskChange, handleKeyDown,
+    tasks, taskToAdd, onTaskAdd, onTaskRemove, onTaskChange, toggleComplete, handleKeyDown,
   } = useTasks();
   const [showPopup, setShowPopup] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
 
   const openPopup = () => {
     setShowPopup(true);
@@ -31,6 +36,10 @@ function TaskList() {
   11. Implement a useEffect hook to store the tasks in the local storage.
   12. Use the useEffect hook to load the tasks from local storage when the component mounts.`;
 
+  if (!hydrated) {
+    return null;
+  }
+
   return (
     <div className={styles.container}>
       <h1 className={styles.heading}>Task List</h1>
@@ -43,9 +52,10 @@ function TaskList() {
         />
       )}
       <ul className={styles.list}>
-        {tasks.map((task) => (
-          <div className={styles.listItem}>
-            <li key={task.id}>{task.title}</li>
+        {tasks && tasks.length > 0 && tasks.map((task) => (
+          <div className={styles.listItem} key={task.id}>
+            <input type="checkbox" className={styles.toggle_complete} onClick={() => toggleComplete(task.id)} value={task.isComplete} defaultChecked={task.isComplete} />
+            <li className={styles.task_title}>{task.title}</li>
             <span className={styles.remove_task_button} onClick={() => onTaskRemove(task.id)} role="presentation">
               <i className="fa fa-trash" aria-hidden="true" />
             </span>
